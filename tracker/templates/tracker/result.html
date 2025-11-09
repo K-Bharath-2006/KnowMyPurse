@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Result</title>
+    <link rel="stylesheet" href="{% static 'tracker/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Weekly Expense Summary</h1>
+        <h2>Status: <span class="{{ status|lower }}">{{ status }}</span></h2>
+
+        {% if status == "Overspending" %}
+            <h3>Recommendations:</h3>
+            <ul class="recommendations">
+                <li>Food: {{ recommendations.food }}</li>
+                <li>Travel: {{ recommendations.travel }}</li>
+                <li>Medical: {{ recommendations.medical }}</li>
+                <li>Others: {{ recommendations.others }}</li>
+            </ul>
+        {% else %}
+            <p>No recommendations needed. You are within budget!</p>
+        {% endif %}
+
+        <a href="{% url 'home' %}" class="btn-back">Back to Home</a>
+    </div>
+</body>
+</html>
